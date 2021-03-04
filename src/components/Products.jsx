@@ -4,33 +4,40 @@ import { addToCart } from "../actions/cartActions";
 import data from "../data/product.json";
 
 class Products extends Component {
-  componentDidMount() {
-    // this.props.fetchProducts();
-  }
+  componentDidMount() {}
   render() {
     const { cartItems } = this.props;
     const productItems = data.map(product => (
-      <div className="col-md-4 my-5" key={product.id}>
-        <div className="thumbnail text-center">
-          <a
-            href={`#${product.id}`}
-            onClick={e => this.props.addToCart(this.props.cartItems, product)}
-          >
-            <img src={`products/${product.sku}_2.jpg`} alt={product.title} />
-            <p>{product.title}</p>
-          </a>
-          <b>{product.price}</b>
+      <div
+        key={product.id}
+        className="max-w-sm  rounded shadow-sm order-double border-4 border-light-blue-500"
+      >
+        <div>
+          <img src={product.image} alt={product.title} />
+          <div className="m-2.5">
+            <h2 className="font-mono">{product.title}</h2>
+            <p className="text-sm">{product.brand.name}</p>
+          </div>
+          <ul className="m-2.5">
+            {product.skus.map(item => {
+              return (
+                <li className="text-xs">
+                  {item.description} - £{item.price}
+                </li>
+              );
+            })}
+          </ul>
           <button
-            className="btn btn-primary"
             onClick={e => this.props.addToCart(cartItems, product)}
+            className="text-sm font-mono text-gray-50 bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50 m-2.5 p-2.5 cursor-pointer"
           >
-            Add to cart
+            Add to basket
           </button>
         </div>
       </div>
     ));
 
-    return <div className="row">{productItems}</div>;
+    return <div className="grid grid-cols-3 gap-4">{productItems}</div>;
   }
 }
 const mapStateToProps = state => ({

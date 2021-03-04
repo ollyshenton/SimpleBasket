@@ -1,5 +1,4 @@
 import React from "react";
-import "./App.css";
 import Products from "./components/Products";
 import Basket from "./components/Basket";
 import { Provider } from "react-redux";
@@ -8,17 +7,11 @@ class App extends React.Component {
   render() {
     return (
       <Provider store={store}>
-        <div className="container">
-          <h1>Shopping Cart Application</h1>
-          <hr />
-          <div className="row">
-            <div className="col-md-8">
-              <hr />
-              <Products />
-            </div>
-            <div className="col-md-4">
-              <Basket />
-            </div>
+        <div className="container mx-auto px-4">
+          <Basket />
+
+          <div className="min-h-screen bg-gray-10 py-6 flex flex-col justify-center sm:py-12">
+            <Products />
           </div>
         </div>
       </Provider>

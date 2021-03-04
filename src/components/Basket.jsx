@@ -1,53 +1,73 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 
-import { addToCart, removeFromCart } from "../actions/cartActions";
+import {
+  addToCart,
+  removeOne,
+  removeFromCart,
+  removeAllCart,
+  addOne
+} from "../actions/cartActions";
 
 class Basket extends Component {
   render() {
-    const { cartItems } = this.props;
+    const { cartItems, removeAllCart } = this.props;
 
     return (
-      <div className="alert alert-info">
+      <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
+        <h2>Basket</h2>
         {cartItems.length === 0 ? (
           "Basket is empty"
         ) : (
           <div>
             You have {cartItems.length} items in the basket.{" "}
-            <i className="fa fa-2x fa-shopping-cart"></i>
+            <i className=" "></i>
             <hr />
           </div>
         )}
         {cartItems.length > 0 && (
-          <div>
-            <ul style={{ marginLeft: -25 }}>
+          <div className="flex rounded-lg h-full bg-gray-100 p-1 flex-col">
+            <ul className="flex flex-col">
               {cartItems.map(item => (
-                <li key={item.id}>
-                  <b>{item.title}</b>
+                <li className="flex flex-row justify-end p-1" key={item.id}>
+                  <p className="">{item.title}</p>
+                  <p className="justify-end ml-2 mr-1">
+                    Quantity: {item.count}
+                  </p>
+
                   <button
-                    style={{ float: "right" }}
-                    className="btn btn-danger btn-xs"
+                    className="justify-end text-gray-50 cursor-pointer bg-purple-600 rounded shadow-sm w-4"
+                    onClick={e => this.props.addOne(this.props.cartItems, item)}
+                  >
+                    +
+                  </button>
+                  <button
+                    className="justify-end text-gray-50 cursor-pointer bg-purple-600 rounded shadow-sm w-4 mr-1 ml-1"
+                    onClick={e =>
+                      this.props.removeOne(this.props.cartItems, item)
+                    }
+                  >
+                    -
+                  </button>
+                  <button
+                    className="justify-end text-gray-50 cursor-pointer bg-purple-600 rounded shadow-sm w-4"
                     onClick={e =>
                       this.props.removeFromCart(this.props.cartItems, item)
                     }
                   >
                     X
                   </button>
-                  <br />
-                  {item.count} X {item.price}
                 </li>
               ))}
             </ul>
-
-            <b>Sum: {cartItems.reduce((a, c) => a + c.price * c.count, 0)}</b>
-            <button
-              onClick={() => alert("Todo: Implement checkout page.")}
-              className="btn btn-primary ml-5"
-            >
-              Checkout
-            </button>
           </div>
         )}
+        <button
+          className="justify-end text-gray-50 cursor-pointer bg-purple-600 rounded shadow-sm"
+          onClick={removeAllCart}
+        >
+          Remove all
+        </button>
       </div>
     );
   }
@@ -55,4 +75,10 @@ class Basket extends Component {
 const mapStateToProps = state => ({
   cartItems: state.cart.items
 });
-export default connect(mapStateToProps, { addToCart, removeFromCart })(Basket);
+export default connect(mapStateToProps, {
+  addToCart,
+  addOne,
+  removeOne,
+  removeFromCart,
+  removeAllCart
+})(Basket);
