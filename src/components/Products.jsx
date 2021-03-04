@@ -21,7 +21,7 @@ class Products extends Component {
           <ul className="m-2.5">
             {product.skus.map(item => {
               return (
-                <li className="text-xs">
+                <li key={item.id} className="text-xs">
                   {item.description} - £{item.price}
                 </li>
               );
