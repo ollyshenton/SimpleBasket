@@ -1,8 +1,26 @@
-import { render, screen } from "@testing-library/react";
+import React from "react";
 import Basket from "../Basket";
+import { Provider } from "react-redux";
+import configureStore from "redux-mock-store";
 
-test("renders products", () => {
-  render(<Basket />);
+const mockStore = configureStore([]);
 
-  expect(Basket.getByText("Basket")).toBeInTheDocument();
+describe("Basket", () => {
+  let store;
+  let component;
+
+  beforeEach(() => {
+    store = mockStore({
+      myState: { title: "Jungle Art Print Unframed", count: 2 }
+    });
+  });
+
+  component = renderer.create(
+    <Provider store={store}>
+      <Basket />
+    </Provider>
+  );
+
+  it("should render with given state from Redux store", () => {});
+  // expect(wrapped).toMatchSnapshot();
 });

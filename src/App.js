@@ -8,7 +8,7 @@ class App extends React.Component {
     return (
       <Provider store={store}>
         <div className="container mx-auto px-4">
-          <h1>A Silly Shop</h1>
+          <h1>A Micro Shop</h1>
           <Basket />
 
           <div className="min-h-screen bg-gray-10 py-6 flex flex-col justify-center sm:py-12">

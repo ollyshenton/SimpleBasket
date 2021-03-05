@@ -4,5 +4,5 @@ import App from "../../App";
 
 it("renders welcome message", () => {
   render(<App />);
-  expect(screen.getByText("A Silly Shop")).toBeInTheDocument();
+  expect(screen.getByText("A Micro Shop")).toBeInTheDocument();
 });
