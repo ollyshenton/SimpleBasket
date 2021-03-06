@@ -1,6 +1,6 @@
 # Getting Started with Create React App
 
-#requires Node.js 12.13.0 or higher.
+# requires Node.js 12.13.0 or higher.
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

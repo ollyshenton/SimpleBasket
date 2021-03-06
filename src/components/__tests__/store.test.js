@@ -7,11 +7,9 @@ describe("My Connected React-Redux Component", () => {
 
   beforeEach(() => {
     store = mockStore({
-      myState: "sample text"
+      myState: "Jungle Art Print Unframed"
     });
   });
 
   it("should render with given state from Redux store", () => {});
-
-  it("should dispatch an action on button click", () => {});
 });
