@@ -15,15 +15,11 @@ class Basket extends Component {
 
     return (
       <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
-        <h2>Basket</h2>
+        <h2 className="font-mono">Basket</h2>
         {cartItems.length === 0 ? (
           "Basket is empty"
         ) : (
-          <div>
-            You have {cartItems.length} items in the basket.{" "}
-            <i className=" "></i>
-            <hr />
-          </div>
+          <p>{cartItems.length} items in the basket</p>
         )}
         {cartItems.length > 0 && (
           <div className="flex rounded-lg h-full bg-gray-100 p-1 flex-col">
